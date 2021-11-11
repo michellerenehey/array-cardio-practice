@@ -21,15 +21,17 @@ const inventors = [
     'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
   ];
 
-  //// .filter for inventors born in the 1500s
+// 1 FILTER .filter for inventors born in the 1500s
   const oldInventors = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600)); 
 //   console.table(oldInventors); 
 
-  //// .map an array of inventors first and last names
+
+// 2 MAP .map an array of inventors first and last names
   const fullNames = inventors.map(inventor => inventor.first + ' ' + inventor.last)
 //   console.log(fullNames); 
 
-  //// .sort inventors by birthdate, oldest to youngest (lowest birth year to highest birth year)
+
+// 3A SORT .sort inventors by birthdate, oldest to youngest (lowest birth year to highest birth year)
   const ascendingAge = inventors.sort(function(a, b) {
       if (a.year > b.year) {
           return 1; // if A year is bigger than B year, move it down the list ('right')
@@ -37,21 +39,22 @@ const inventors = [
           return -1; // if A is smaller than B, move it up the list ('left')
       }
   }); 
-  console.table(ascendingAge); 
+//   console.table(ascendingAge); 
 
-  //// same .sort as above, but with ternary: 
+// 3B SORT same .sort as above, but with ternary: 
   //// the ternary says: "if a.year is greater than b.year return one, else return -1"
   const descendingAgeTernary = inventors.sort((a,b) => a.year > b.year ? 1 : -1); 
 //   console.table(descendingAgeTernary)
 
-  //// .reduce - sum o the years the inventors lived 
+
+// 4 REDUCE .reduce - sum o the years the inventors lived 
   const yearsLived = inventors.reduce((total, inventor) => {
       return total + (inventor.passed - inventor.year); 
   }, 0); 
 //   console.log(yearsLived);
 
-  //// .sort inventors by years they were alive, longest living to shortest living (largest gap to shortest gap)
-  
+
+// 5 SORT .sort inventors by years they were alive, longest living to shortest living (largest gap to shortest gap)
   const oldest = inventors.sort(function(a, b){
       const personA = a.passed - a.year;
       const personB = b.passed - b.year;
@@ -61,6 +64,38 @@ const inventors = [
           return 1; // if A is younger, move them lower on the list ('right')
       }
   }); 
-  console.table(oldest); 
+//   console.log(oldest); 
+// -1 is 'left' on the list (higher in a table); 1 is 'right' on the list (lower in a table)
 
 
+// 6 MAP & FILTER .map to create a list of Boulevards in Paris that contain 'de' in the name 
+// this is going to be done in the console, with this link: https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+// const category = document.querySelector('.mw-category'); 
+// const links = Array.from(category.querySelectorAll('a')); 
+
+// const linkName = links.map(link => link.textContent);
+// const de = linkName.filter(streetName => streetName.includes('de')); 
+
+// 7 SORT .sort the people in the people array alphabetically by last name 
+const surnameSort = people.sort(function(a,b) {
+    if (a > b) {
+        return 1
+    } else {
+        return -1
+    }
+}); 
+// console.log(surnameSort); 
+
+// 8 REDUCE use .reduce to sum up the instances of each of these 
+const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+const sum = data.reduce(function(obj, item) {
+    if(!obj[item]) {
+        obj[item] = 0; 
+    }
+    obj[item]++; 
+    return obj; 
+}, {}); 
+
+console.log(sum); 
